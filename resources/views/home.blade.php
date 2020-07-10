@@ -137,6 +137,7 @@
           <li class="active"><a href="#hero">Home</a></li>
           <li><a href="#buat_aduan">Buat Aduan</a></li>
           <li><a href="#tracking_aduan">Tracking Aduan</a></li>
+          <li><a href="./login">Login</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
