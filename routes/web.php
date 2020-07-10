@@ -26,6 +26,7 @@ Route::group(["prefix" => '/admin', "middleware" => ["is_login"]], function(){
 	Route::post('/respon-admin', 'AdminController@responAdmin');
 	Route::post('/new-kategori', 'AdminController@newKategori');
 	Route::get('/get-kategori', 'AdminController@getKategori');
+	Route::post('/delete-kategori', 'AdminController@delete');
 });
 
 Route::group(["prefix" => "/login"], function(){

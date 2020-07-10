@@ -197,4 +197,12 @@ class AdminController extends Controller
 
         echo json_encode(array('result' => 'sukses', 'respon' => $progres_aduan, 'keyed' => $keyed->all()));
     }
+
+    public function delete(Request $request)
+    {
+        $data = $request->data;
+        $kategori = KategoriAduanModel::find($data);
+        $kategori->delete();
+        echo json_encode(array('result' => 'sukses'));
+    }
 }
