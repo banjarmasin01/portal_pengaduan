@@ -77,12 +77,23 @@ class AdminController extends Controller
         {        
             $daftar_aduan;
             $state = $request->get('state');
-            $kategori_all = AduanModel::all();
-            $grouped = $kategori_all->groupBy('is_respond');
+            $grouped = AduanModel::all()->groupBy('is_respond');
+            // $grouped = $kategori_all->groupBy('is_respond');
+            $groupCount = array();
+            if($grouped->count() > 0)
+            {
+                $groupCount = $grouped->map(function ($item, $key) {
+                    return collect($item)->count();
+                });
+            } else 
+            {
+                $groupCount = array(
+                    '0' => 0,
+                    '1' => 0
+                );
+            }            
 
-            $groupCount = $grouped->map(function ($item, $key) {
-                return collect($item)->count();
-            });
+            
 
             if($state == 'closed') 
             {
