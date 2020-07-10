@@ -327,6 +327,9 @@ function reloadTable() {
 						<td>${i + 1}</td>
 						<td class="editable-td" data-kategori="${data.result[i].id}">${data.result[i].kategori}</td>
 						<td><input class="set-kategori" type="checkbox" data-kategori="${data.result[i].id}" ${data.result[i].is_active == '1' ? 'checked' : ''}  data-toggle="toggle"></td>
+						<td><button class="btn delete-kategori" data-kategori="${data.result[i].id}">
+							<i class="material-icons">delete</i>
+						</button></td>
 					</tr>
 				`;
 			}
@@ -389,6 +392,49 @@ function saveNewKategori() {
 			}
 		})
 	}
-
 }
+
+$('body').on('click','.delete-kategori', function () {
+	let kategori = $(this).data('kategori');
+	let text = $(this).parent().siblings('.editable-td').html();	
+	Swal.fire({
+		icon: 'question',
+		title: 'Konfirmasi!',
+		html: `<p>Anda akan menghapus kategori: <strong>${text}</strong></p>`,
+		showCancelButton: true,
+		confirmButtonText: 'Ya, Hapus Data',
+		showLoaderOnConfirm: true,
+		preConfirm: () => {
+			return new Promise((resolve, reject) => {
+				$.ajax({
+					url: base_url + '/admin/delete-kategori',
+					dataType: 'json',
+					type: 'POST',
+					data: { _token: token, data: kategori },
+					success: function (suc) {
+						resolve(suc);
+					},
+					error: function (err) {
+						reject(err.responseText);
+					}
+				})
+			}).then((suc) => {
+				// refresh table
+				reloadTable();
+				return suc.result;
+			}).catch((err) => {
+				Swal.showValidationMessage(
+					`Request failed: ${err}`
+				);
+			})
+		},
+		allowOutsideClick: () => !Swal.isLoading()
+	}).then(function (val) {
+		Swal.fire({
+			icon: 'success',
+			title: 'Sukses!',
+			html: `<p>Berhasil menghapus kategori <strong>${text}</strong>`
+		})
+	})
+})
 

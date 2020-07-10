@@ -35,7 +35,8 @@ input:focus {
                         <tr>
                             <th>No</th>
                             <th>Nama Kategori</th>
-                            <th>Active</th>                        
+                            <th>Active</th>
+                            <th>Action</th>                        
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,9 @@ input:focus {
                             <td>{{$loop->index + 1}}</td>
                             <td class="editable-td" data-kategori="{{ $result->id }}">{{$result->kategori}}</td>
                             <td><input class="set-kategori" type="checkbox" data-kategori="{{ $result->id }}" {{ ($result->is_active == '1' ? 'checked' : '') }} data-toggle="toggle"></td>
+                            <td><button class="btn delete-kategori" data-kategori="{{ $result->id }}">
+                                    <i class="material-icons">delete</i>
+                                </button></td>
                         </tr>                      
                         @endforeach
                     </tbody>                    
@@ -89,23 +93,7 @@ input:focus {
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script>
 $(document).ready(function(){    
-    $("#mainTable").editableTableWidget(); 
-    
-    
-    // $(".editable-td").on('change', function(evt, newValue){
-    //     let val = newValue.trim();        
-    //     if(val.length == 0)
-    //     {
-    //         Swal.fire({
-    //             icon: 'warning',
-    //             title: 'Warning!',
-    //             html: '<p>Isian tidak boleh kosong</p>'
-    //         });
-    //     } else 
-    //     {
-    //         console.log('ready to save');
-    //     }
-    // })
+    $("#mainTable").editableTableWidget();     
 })
 </script>
 @endsection
