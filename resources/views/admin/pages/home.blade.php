@@ -174,6 +174,3 @@ try {
 })
 </script>
 @endsection
-
-085251790306 Ibu Naura
-082255467644 pak sa'dudin
