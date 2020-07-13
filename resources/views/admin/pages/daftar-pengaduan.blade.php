@@ -41,12 +41,12 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation">
                         <a href="?state=opened" class="{{ ($state == 'opened' ? 'active show' : '')}}">
-                            Belum Direspon <span class="badge bg-orange">{{$count_aduan['0']}}</span>
+                            Belum Direspon <span class="badge bg-orange">{{isset($count_aduan['0']) ? $count_aduan['0'] : '0'}}</span>
                         </a>
                     </li>
                     <li role="presentation">
                         <a href="?state=closed" class="{{ ($state == 'closed' ? 'active show' : '')}}">
-                            Sudah Direspon <span class="badge bg-teal">{{$count_aduan['1']}}</span>
+                            Sudah Direspon <span class="badge bg-teal">{{isset($count_aduan['1']) ? $count_aduan['1'] : '0'}}</span>
                         </a>
                     </li>                    
                 </ul>
