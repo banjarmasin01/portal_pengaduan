@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\AduanModel;
 use App\KategoriAduanModel;
 use App\ProgresAduanModel;
+use App\Jobs\EmailJob;
+use App\Jobs\EmailProgresJobAdmin;
 
 class AduanController extends Controller
 {   
@@ -36,7 +38,26 @@ class AduanController extends Controller
         $aduan->kategori = $output['kategori_laporan'];
         $aduan->is_respond = 0;
         $aduan->save();
+        $this->sendNotifEmail(array(
+            'ticket' => $randomTicket,
+            'nama' => $output['nama_pelapor'],
+            'email' => $output['email_pelapor'],
+            'judul_pengaduan' => $output['judul_laporan'],
+            'pesan_pengaduan' => $output['isi_laporan']
+        ));
         echo json_encode(array('result' => 'sukses', 'ticket' => $randomTicket));
+    }
+
+    public function sendNotifEmail($data, $toAdmin = false)
+    {        
+        if($toAdmin)
+        {
+            dispatch(new EmailProgresJobAdmin($data));
+        } else 
+        {
+            dispatch(new EmailJob($data));
+        }
+        
     }
 
     public function getRandomTicket()
@@ -80,9 +101,14 @@ class AduanController extends Controller
         $aduan = AduanModel::find($data['no_ticket']);
         $aduan->is_respond = 0;
         $aduan->save();
+        $this->sendNotifEmail(array(
+            'progres_aduan' => ProgresAduanModel::where('no_ticket', $data['no_ticket'])->get(),
+            'aduan' => AduanModel::find($data['no_ticket'])
+        ), true);
         $progres_aduan = $aduan->progresAduan;
         echo json_encode(array('result' => 'sukses', 'respon' => $progres_aduan));
     }
+    
 
     function generateRandomString($length = 5) {
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
