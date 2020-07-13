@@ -395,6 +395,7 @@ function saveNewKategori() {
 }
 
 $('body').on('click','.delete-kategori', function () {
+	$(this).blur();
 	let kategori = $(this).data('kategori');
 	let text = $(this).parent().siblings('.editable-td').html();	
 	Swal.fire({
@@ -430,11 +431,14 @@ $('body').on('click','.delete-kategori', function () {
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(function (val) {
-		Swal.fire({
-			icon: 'success',
-			title: 'Sukses!',
-			html: `<p>Berhasil menghapus kategori <strong>${text}</strong>`
-		})
+		if(val.value)
+		{
+			Swal.fire({
+				icon: 'success',
+				title: 'Sukses!',
+				html: `<p>Berhasil menghapus kategori <strong>${text}</strong>`
+			})
+		}
 	})
 })
 
