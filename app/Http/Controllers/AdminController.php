@@ -9,6 +9,7 @@ use App\AduanModel;
 use App\ProgresAduanModel;
 use Datetime;
 use Carbon\Carbon;
+use App\Jobs\EmailProgresJob;
 
 class AdminController extends Controller
 {
@@ -195,7 +196,17 @@ class AdminController extends Controller
         $aduan_temp->is_respond = 1;
         $aduan_temp->save();
 
+        $this->sendNotifEmail(array(
+            'progres_aduan' => $progres_aduan,
+            'aduan' => $aduan_temp
+        ));
+
         echo json_encode(array('result' => 'sukses', 'respon' => $progres_aduan, 'keyed' => $keyed->all()));
+    }
+
+    public function sendNotifEmail($data)
+    {        
+        dispatch(new EmailProgresJob($data));
     }
 
     public function delete(Request $request)

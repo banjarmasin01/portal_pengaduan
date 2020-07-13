@@ -4,7 +4,7 @@
         <ul class="list">
             <li class="header">-- Main</li>
             <li class="{{ last(request()->segments()) == 'home' ? 'active' : '' }}">
-                <a href='./home'>
+                <a href="{{ url('/admin/') }}">
                     <i data-feather="home"></i>
                     <span>Home</span>
                 </a>

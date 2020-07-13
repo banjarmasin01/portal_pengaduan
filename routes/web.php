@@ -36,3 +36,9 @@ Route::group(["prefix" => "/login"], function(){
 });
 
 
+Route::get('sendbasicemail','SendMail@basic_email');
+Route::get('sendhtmlemail','SendMail@html_email');
+Route::get('sendattachmentemail','SendMail@attachment_email');
+Route::get('cek', function(){return view('email.template');});
+Route::get('sendrespon', 'SendMail@sendNotifEmail');
+
