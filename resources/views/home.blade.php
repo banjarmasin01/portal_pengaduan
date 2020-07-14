@@ -405,7 +405,7 @@
           <div class="col-lg-4 col-md-6 footer-links">
             <h4>Tautan BPS</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://kalsel.bps.go.id">Website BPS</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://kalsel.bps.go.id">Website BPS Kalsel</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="https://sp2010.bps.go.id">Hasil Sensus Penduduk</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="https://st2013.bps.go.id">Hasil Sensus Pertanian</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="https://se2016.bps.go.id">Hasil Sensus Ekonomi</a></li>              

@@ -166,7 +166,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="../login/logout">
+                                        <a href="{{ url('/login/logout') }}">
                                             <i class="material-icons">power_settings_new</i>Logout
                                         </a>
                                     </li>
