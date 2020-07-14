@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel="stylesheet">
     <!--<![endif]-->
 
-    <title>Laporan Pengaduan BPS Provinsi Kalimantan Selatan</title>
+    <title>{{config('app.name')}}</title>
 
     <style type="text/css">
         body {
@@ -165,7 +165,7 @@
         <tr>
             <td>
                 <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
-                    Laporan Pengaduan BPS Provinsi Kalimantan Selatan!
+                    {{config('app.name')}}!
                 </div>
             </td>
         </tr>
@@ -305,8 +305,10 @@
 
                                         </table>
                                         <p style="line-height: 24px">
-                                            Hormat Kami,</br>
-                                            BPS Provinsi Kalimantan Selatan
+                                            Hormat Kami
+                                        </p>
+                                        <p>
+                                             BPS Provinsi Kalimantan Selatan
                                         </p>
 
                                     </td>

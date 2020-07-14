@@ -305,9 +305,9 @@
 
                                         </table>
                                         <p style="line-height: 24px">
-                                            Hormat Kami,</br>
-                                            BPS Provinsi Kalimantan Selatan
+                                            Hormat Kami,                                            
                                         </p>
+                                        <p>BPS Provinsi Kalimantan Selatan</p>
 
                                     </td>
                                 </tr>
